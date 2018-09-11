@@ -15,9 +15,14 @@
       }
     ],
     "yoda": 0,
-    "no-unused-vars": 1
+    "no-unused-vars": 1,
+    "react/prefer-stateless-function": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"]  }],
   },
   "globals": {
-    "$": false
+    "$": false,
+    "describe": true,
+    "it": true,
+    "test": true
   }
 }
