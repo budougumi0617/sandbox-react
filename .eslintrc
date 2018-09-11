@@ -3,7 +3,10 @@
   "env": {
     "browser": true
   },
-  "plugins": ["prettier"],
+  "plugins": [
+    "react",
+    "prettier"
+  ],
   "rules": {
     "prettier/prettier": [
       "error",
