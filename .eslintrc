@@ -1,12 +1,16 @@
 {
-  "extends": ["airbnb", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:flowtype/recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "prettier/flowtype",
+    "prettier/react"
+  ],
   "env": {
     "browser": true
   },
-  "plugins": [
-    "react",
-    "prettier"
-  ],
+  "plugins": ["react", "flowtype", "prettier", "jsx-a11y"],
   "rules": {
     "prettier/prettier": [
       "error",
