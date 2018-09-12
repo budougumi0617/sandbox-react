@@ -3,14 +3,14 @@
 import * as React from 'react';
 
 type Props = {
-  onClick: func,
+  onClick: (item: {}, e:  Event) => void,
   completed: boolean,
   text: string
 };
 
-type State = {};
+type State={}
 
-export default class Todo extends React.Component<Props, State> {
+export default  class Todo extends React.Component<Props, State> {
   render() {
     return (
   <li
