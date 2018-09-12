@@ -1,4 +1,6 @@
 import React from 'react';
+
+import assert from 'power-assert';
 import { shallow } from 'enzyme';
 
 import App from '../App';
@@ -6,6 +8,6 @@ import App from '../App';
 describe('App', () => {
   it('renders without crashing', () => {
     const wrapper = shallow(<App />);
-    expect(wrapper.find('.App-header').length).toBe(1);
+    assert.equal(wrapper.find('.App-header').length, 1);
   });
 });
