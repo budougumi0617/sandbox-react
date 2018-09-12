@@ -15,7 +15,8 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        'singleQuote': true
+        'singleQuote': true,
+        'printWidth': 100
       }
     ],
     'yoda': 0,
