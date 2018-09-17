@@ -9,12 +9,6 @@ type DecrementAction = {
 
 export type Action = IncreamentAction | DecrementAction;
 
-export default class Index {
-  static increment() {
-    return { type: 'INCREMENT' };
-  }
+export const increment = () => ({ type: 'INCREMENT' });
 
-  static decrement() {
-    return { type: 'DECREMENT' };
-  }
-}
+export const decrement = () => ({ type: 'DECREMENT' });
