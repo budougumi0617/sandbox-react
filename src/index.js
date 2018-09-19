@@ -12,10 +12,15 @@ import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(reducer);
 
+const root = document.getElementById('root');
+if (root == null) {
+  throw new Error('no pad element');
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
+  root
 );
 registerServiceWorker();
