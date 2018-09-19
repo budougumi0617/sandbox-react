@@ -14,6 +14,12 @@ type Props = {
   decrement: Action => any
 };
 
+type State = {
+  count: {
+    value: number
+  }
+};
+
 class App extends Component<Props> {
   render() {
     const props = this.props;
@@ -28,7 +34,7 @@ class App extends Component<Props> {
   }
 }
 
-const mapStateToProps = state => ({ value: state.count.value });
+const mapStateToProps = (state: State) => ({ value: state.count.value });
 
 const mapDispatchToProps = (dispatch: *) => bindActionCreators({ increment, decrement }, dispatch);
 
