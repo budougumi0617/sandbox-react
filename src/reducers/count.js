@@ -1,6 +1,6 @@
 // @flow
 
-import type { Action } from '../actions';
+import type { Action } from '../types/Action';
 
 export type State = {
   value: number

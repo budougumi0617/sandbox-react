@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
-import { increment, decrement } from '../actions';
+import * as Actions from '../actions';
 
-import type { Action } from '../actions';
+import type { Action } from '../types/Action';
 
 type Props = {
   value: number,
@@ -14,6 +14,8 @@ type Props = {
   decrement: Action => any
 };
 
+// FIXME Need to move to types directory.
+// FIXME Re-edit if add anothor container.
 type State = {
   count: {
     value: number
@@ -36,7 +38,7 @@ class App extends Component<Props> {
 
 const mapStateToProps = (state: State) => ({ value: state.count.value });
 
-const mapDispatchToProps = (dispatch: *) => bindActionCreators({ increment, decrement }, dispatch);
+const mapDispatchToProps = (dispatch: *) => ({ ...bindActionCreators(Actions, dispatch) });
 
 export default connect(
   mapStateToProps,
