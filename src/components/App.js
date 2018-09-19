@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
 import { increment, decrement } from '../actions';
@@ -29,10 +30,7 @@ class App extends Component<Props> {
 
 const mapStateToProps = state => ({ value: state.count.value });
 
-const mapDispatchToProps = dispatch => ({
-  increment: () => dispatch(increment()),
-  decrement: () => dispatch(decrement())
-});
+const mapDispatchToProps = (dispatch: *) => bindActionCreators({ increment, decrement }, dispatch);
 
 export default connect(
   mapStateToProps,
