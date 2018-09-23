@@ -10,8 +10,7 @@ import type { Action } from '../types/Action';
 
 type Props = {
   value: number,
-  increment: Action => any,
-  decrement: Action => any
+  events: Action => any
 };
 
 // FIXME Need to move to types directory.
@@ -22,16 +21,30 @@ type State = {
   }
 };
 
-class App extends Component<Props> {
-  render() {
-    const props = this.props;
+class EventsIndex extends Component<Props> {
+  renderEvents() {
+    return this.props.events.map(event => (
+      <tr key={event.id}>
+        <td>{event.id}</td>
+        <td>{event.title}</td>
+        <td>{event.body}</td>
+      </tr>
+    ));
+  }
 
+  render() {
     return (
-      <React.Fragment>
-        <div>value: {props.value}</div>
-        <button onClick={props.increment}>+1</button>
-        <button onClick={props.decrement}>-1</button>
-      </React.Fragment>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Body</th>
+          </tr>
+        </thead>
+
+        <tbody>{this.renderEvents()}</tbody>
+      </table>
     );
   }
 }
@@ -43,4 +56,4 @@ const mapDispatchToProps = (dispatch: *) => ({ ...bindActionCreators(Actions, di
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App);
+)(EventsIndex);

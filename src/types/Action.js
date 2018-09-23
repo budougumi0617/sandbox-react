@@ -1,10 +1,9 @@
 // @flow
 
-type IncreamentAction = {
-  type: 'INCREMENT'
-};
-type DecrementAction = {
-  type: 'DECREMENT'
+const ReadEvents: 'READ_EVENTS' = 'READ_EVENTS';
+type ReadEventsAction = {
+  type: typeof ReadEvents
 };
 
-export type Action = IncreamentAction | DecrementAction;
+export type Action = ReadEventsAction;
+// export type Action = IncreamentAction | DecrementAction;
