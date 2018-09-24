@@ -1,29 +1,19 @@
 // @flow
 
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-
 import { connect } from 'react-redux';
-import * as Actions from '../actions';
+import _ from 'lodash';
 
-import type { Action } from '../types/Action';
+import { readEvents } from '../actions';
 
-type Props = {
-  value: number,
-  events: Action => any
-};
-
-// FIXME Need to move to types directory.
-// FIXME Re-edit if add anothor container.
-type State = {
-  count: {
-    value: number
+class EventsIndex extends Component {
+  componentDidMount() {
+    this.props.readEvents();
   }
-};
 
-class EventsIndex extends Component<Props> {
   renderEvents() {
-    return this.props.events.map(event => (
+    // return this.props.events.map(event => (
+    return _.map(this.props.events, event => (
       <tr key={event.id}>
         <td>{event.id}</td>
         <td>{event.title}</td>
@@ -43,15 +33,15 @@ class EventsIndex extends Component<Props> {
           </tr>
         </thead>
 
-        <tbody>{this.renderEvents()}</tbody>
+        <tbody> {this.renderEvents()} </tbody>
       </table>
     );
   }
 }
 
-const mapStateToProps = (state: State) => ({ value: state.count.value });
+const mapStateToProps = state => ({ events: state.events });
 
-const mapDispatchToProps = (dispatch: *) => ({ ...bindActionCreators(Actions, dispatch) });
+const mapDispatchToProps = { readEvents };
 
 export default connect(
   mapStateToProps,

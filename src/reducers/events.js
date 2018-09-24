@@ -1,20 +1,19 @@
 // @flow
 
+import _ from 'lodash';
+import { READ_EVENTS } from '../actions';
+
 import type { Action } from '../types/Action';
 
 export type State = {
   value: number
 };
 
-const initialState = { value: 0 };
-
-export default (state: State = initialState, action: Action) => {
+export default (events = {}, action: Action) => {
   switch (action.type) {
-    case 'INCREMENT':
-      return { value: state.value + 1 };
-    case 'DECREMENT':
-      return { value: state.value - 1 };
+    case READ_EVENTS:
+      return _.mapKeys(action.response.data, 'id');
     default:
-      return state;
+      return events;
   }
 };

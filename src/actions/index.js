@@ -1,13 +1,13 @@
 // @flow
 
 import axios from 'axios';
-import { createAction } from 'redux-actions';
+
+export const READ_EVENTS = 'READ_EVENTS';
 
 const ROOT_URL = 'https://udemy-utils.herokuapp.com/api/v1';
 const QUERYSTRING = '?token=token123';
 
-export const readEvents = createAction('READ_EVENTS', () =>
-  axios.get(`${ROOT_URL}/events${QUERYSTRING}`).then(function(response) {
-    return response;
-  })
-);
+export const readEvents = () => async dispatch => {
+  const response = await axios.get(`${ROOT_URL}/events${QUERYSTRING}`);
+  dispatch({ type: READ_EVENTS, response });
+};
