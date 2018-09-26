@@ -5,7 +5,7 @@ import { READ_EVENTS } from '../actions';
 
 import type { Action } from '../types/Action';
 
-export default (events = {}, action: Action) => {
+export default (events: { [id: number]: any } = {}, action: Action) => {
   switch (action.type) {
     case READ_EVENTS:
       return _.mapKeys(action.response.data, 'id');

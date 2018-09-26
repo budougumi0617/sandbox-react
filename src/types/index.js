@@ -3,15 +3,18 @@
 import type { Store as ReduxStore, Dispatch as ReduxDispatch } from 'redux';
 
 import type { Action as _Action } from './action';
-import type { State as _State } from './state';
+// import type { State as _State } from './state';
 
-export type State = _State;
+// export type State = _State;
+export type State = {
+  events: any
+};
 export type Action = _Action;
 
 type GetState = () => State;
 
- export type ThunkAction = (dispatch: Dispatch, getState: GetState) => void | Promise<void>;
-// ) => Action | Promise<Action>
+export type ThunkAction = (dispatch: Dispatch, getState: GetState) => void | Promise<void>;
+// export type ThunkAction = (dispatch: Dispatch, getState: GetState) => Action | Promise<Action>;
 
 type ThunkDispatch<A> = ThunkAction => A;
 
