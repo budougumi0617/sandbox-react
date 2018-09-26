@@ -5,10 +5,6 @@ import { READ_EVENTS } from '../actions';
 
 import type { Action } from '../types/Action';
 
-export type State = {
-  value: number
-};
-
 export default (events = {}, action: Action) => {
   switch (action.type) {
     case READ_EVENTS:

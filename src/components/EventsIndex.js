@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 import { readEvents } from '../actions';
 
-class EventsIndex extends Component {
+class EventsIndex extends Component<Props> {
   componentDidMount() {
     this.props.readEvents();
   }
