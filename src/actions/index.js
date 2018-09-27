@@ -10,6 +10,7 @@ const ROOT_URL = 'https://udemy-utils.herokuapp.com/api/v1';
 const QUERYSTRING = '?token=token123';
 
 export const readEvents: void => ThunkAction = (): ThunkAction => async (dispatch: Dispatch) => {
-  const response = await axios.get(`${ROOT_URL}/events${QUERYSTRING}`);
-  dispatch({ type: READ_EVENTS, response });
+  return await axios
+    .get(`${ROOT_URL}/events${QUERYSTRING}`)
+    .then(response => dispatch({ type: READ_EVENTS, response }));
 };
