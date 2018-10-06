@@ -4,14 +4,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
+import promiseMiddleware from 'redux-promise';
 
 import './index.css';
 import reducer from './reducers';
 import EventsIndex from './components/EventsIndex';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(reducer, applyMiddleware(promiseMiddleware));
 
 const root = document.getElementById('root');
 if (root == null) {

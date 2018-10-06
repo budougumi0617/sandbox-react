@@ -40,15 +40,21 @@ class EventsIndex extends Component<Props> {
           </tr>
         </thead>
 
-        <tbody> {this.renderEvents()} </tbody>
+        <tbody>{this.renderEvents()}</tbody>
       </table>
     );
   }
 }
 
-const mapStateToProps = state => ({ events: state.events });
+const mapStateToProps = state => ({ events: state.events.events });
 
-const mapDispatchToProps = { readEvents };
+const mapDispatchToProps = (dispatch, _props) => {
+  return {
+    readEvents: function() {
+      dispatch(readEvents());
+    }
+  };
+};
 
 export default connect(
   mapStateToProps,
