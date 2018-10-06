@@ -2,7 +2,8 @@
 
 const ReadEvents: 'READ_EVENTS' = 'READ_EVENTS';
 export type ReadEventsAction = {
-  type: typeof ReadEvents
+  type: typeof ReadEvents,
+  response: Object
   //  response: {
   //    data: Object // TODO define Event type
   //  }

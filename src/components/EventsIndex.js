@@ -9,6 +9,7 @@ import { readEvents } from '../actions';
 import type { ThunkAction } from '../types';
 
 type Props = {
+  events: any,
   readEvents: void => ThunkAction
 };
 
