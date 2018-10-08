@@ -4,8 +4,6 @@ import axios from 'axios';
 import _ from 'lodash';
 import { createAction } from 'redux-actions';
 
-import type { Dispatch, ThunkAction } from '../types';
-
 export const READ_EVENTS = 'READ_EVENTS';
 
 const ROOT_URL = 'https://udemy-utils.herokuapp.com/api/v1';

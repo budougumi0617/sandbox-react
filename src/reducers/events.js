@@ -5,7 +5,9 @@ import { READ_EVENTS } from '../actions';
 
 import type { Action } from '../types/Action';
 
-const initialState = { events: {} };
+const initialState: {|
+  events: { [id: number]: Event }
+|} = { events: {} };
 
 export default handleActions(
   {

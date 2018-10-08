@@ -1,9 +1,16 @@
 // @flow
 
 const ReadEvents: 'READ_EVENTS' = 'READ_EVENTS';
+
+export type Event = {
+  id: number,
+  tite: string,
+  body: string
+};
+
 export type ReadEventsAction = {
   type: typeof ReadEvents,
-  response: Object
+  payload: { [id: number]: Event }
   //  response: {
   //    data: Object // TODO define Event type
   //  }
