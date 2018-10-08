@@ -6,6 +6,9 @@ import _ from 'lodash';
 
 import { readEvents } from '../actions';
 
+import type { Dispatch } from 'redux';
+import type { Action } from '../types/Action';
+
 type Props = {
   events: any,
   readEvents: void => any
@@ -44,9 +47,7 @@ class EventsIndex extends Component<Props> {
   }
 }
 
-const mapStateToProps = state => ({ events: state.events.events });
-
-const mapDispatchToProps = (dispatch, _props) => {
+const mapDispatchToProps = (dispatch: Dispatch<Action>, _props) => {
   return {
     readEvents: function() {
       dispatch(readEvents());
