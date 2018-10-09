@@ -11,8 +11,16 @@ const initialState: {|
 
 export default handleActions(
   {
-    [READ_EVENTS]: (state: any, action: Action) => {
-      return { ...state, events: action.payload };
+    [READ_EVENTS]: {
+      next(state: any, action: Action) {
+        console.log(action);
+        return { ...state, events: action.payload };
+      },
+      throw(state: any, action: Action) {
+        console.log('In throw');
+        console.log(action);
+        return { ...state, events: action.payload };
+      }
     }
   },
   initialState
