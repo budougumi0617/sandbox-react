@@ -1,25 +1,25 @@
 // @flow
 
-import { handleActions } from 'redux-actions';
-import { READ_EVENTS } from '../actions';
+import { handleActions, type ActionType } from 'redux-actions';
+import { readEvents, READ_EVENTS } from '../actions';
 
-import type { Action } from '../types/Action';
+import type { Action, EventMap } from '../types/Action';
 
-const initialState: {|
-  events: { [id: number]: Event }
-|} = { events: {} };
+const initialState: {
+  events: EventMap | {}
+} = { events: {} };
 
 export default handleActions(
   {
     [READ_EVENTS]: {
-      next(state: any, action: Action) {
+      next(state: { events: EventMap | {} }, action: ActionType<typeof readEvents>) {
         console.log(action);
         return { ...state, events: action.payload };
       },
-      throw(state: any, action: Action) {
+      throw(state: { events: EventMap | {} }, action: Action) {
         console.log('In throw');
         console.log(action);
-        return { ...state, events: action.payload };
+        return { ...state, events: {} };
       }
     }
   },

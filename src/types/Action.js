@@ -14,11 +14,8 @@ export type EventMap = {|
 
 export type ReadEventsAction = {
   type: typeof ReadEvents,
-  payload: EventMap | Error,
-  +error?: boolean
-  //  response: {
-  //    data: Object // TODO define Event type
-  //  }
+  payload?: EventMap | Error,
+  error?: boolean
 };
 
 export type Action = ReadEventsAction;
