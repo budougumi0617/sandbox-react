@@ -47,7 +47,9 @@ class EventsIndex extends Component<Props> {
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>, _props) => {
+const mapStateToProps = state => ({ events: state.events.events });
+
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
   return {
     readEvents: function() {
       dispatch(readEvents());
