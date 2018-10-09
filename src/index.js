@@ -10,7 +10,6 @@ import './index.css';
 import reducer from './reducers';
 import EventsIndex from './components/EventsIndex';
 import registerServiceWorker from './registerServiceWorker';
-import events from './reducers/events';
 
 const store = createStore(reducer, applyMiddleware(promiseMiddleware));
 
