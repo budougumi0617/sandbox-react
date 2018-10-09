@@ -5,7 +5,6 @@ import _ from 'lodash';
 import { createAction } from 'redux-actions';
 
 import type { ReadEventsAction } from '../types/Action';
-import type { PromiseAction } from '../types';
 
 export const READ_EVENTS = 'READ_EVENTS';
 
@@ -13,6 +12,8 @@ const ROOT_URL = 'https://udemy-utils.herokuapp.com/api/v1';
 const QUERYSTRING = '?token=token123';
 
 export const readEvents: void => ReadEventsAction = createAction(READ_EVENTS, () =>
+  // TODO ソースコード見れば良かった。
+  // https://github.com/redux-utilities/redux-actions/blob/51de3891278dc03713d917d636f1508c0c80d44f/src/createAction.js#L29-L31
   axios
     .get(`${ROOT_URL}/events${QUERYSTRING}`)
     .then(response => {

@@ -12,14 +12,14 @@ export type EventMap = {|
   [id: number]: Event
 |};
 
-export type ReadEventsAction = {|
+export type ReadEventsAction = {
   type: typeof ReadEvents,
   payload: EventMap | Error,
   +error?: boolean
   //  response: {
   //    data: Object // TODO define Event type
   //  }
-|};
+};
 
 export type Action = ReadEventsAction;
 // export type Action = IncreamentAction | DecrementAction;
