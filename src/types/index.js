@@ -1,23 +1,22 @@
 // @flow
 
-import type { Store as ReduxStore, Dispatch as ReduxDispatch } from 'redux';
-
 import type { Action as _Action } from './action';
-// import type { State as _State } from './state';
 
-// export type State = _State;
-export type State = {
-  events: any
-};
 export type Action = _Action;
 
-type GetState = () => State;
+export type PromiseAction<R> = { type: string, payload: Promise<R> };
+export type PromiseDispatch = <R>(action: PromiseAction<R>) => Promise<R>;
+export type PlainDispatch<A: { type: $Subtype<string> }> = (action: A) => A;
+/* NEW: Dispatch is now a combination of these different dispatch types */
+export type Dispatch<A> = PlainDispatch<A> & PromiseDispatch;
 
-export type ThunkAction = (dispatch: Dispatch, getState: GetState) => void | Promise<void>;
-// export type ThunkAction = (dispatch: Dispatch, getState: GetState) => Action | Promise<Action>;
-
-type ThunkDispatch<A> = ThunkAction => A;
+declare type Reducer<S, A> = (state: S, action: A) => S;
 
 // https://flow.org/en/docs/types/intersections/
-export type Dispatch = ReduxDispatch<Action> & ThunkDispatch<Action>;
-export type Store = ReduxStore<State, Action>;
+declare type Store<S, A> = {
+  // rewrite MiddlewareAPI members in order to get nicer error messages (intersections produce long messages)
+  dispatch: Dispatch<S, A>,
+  getState(): S,
+  subscribe(listener: () => void): () => void,
+  replaceReducer(nextReducer: Reducer<S, A>): void
+};

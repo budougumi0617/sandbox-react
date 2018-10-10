@@ -6,11 +6,12 @@ import _ from 'lodash';
 
 import { readEvents } from '../actions';
 
-import type { ThunkAction } from '../types';
+import type { Dispatch } from 'redux';
+import type { Action } from '../types/Action';
 
 type Props = {
   events: any,
-  readEvents: void => ThunkAction
+  readEvents: void => any
 };
 
 class EventsIndex extends Component<Props> {
@@ -40,15 +41,21 @@ class EventsIndex extends Component<Props> {
           </tr>
         </thead>
 
-        <tbody> {this.renderEvents()} </tbody>
+        <tbody>{this.renderEvents()}</tbody>
       </table>
     );
   }
 }
 
-const mapStateToProps = state => ({ events: state.events });
+const mapStateToProps = state => ({ events: state.events.events });
 
-const mapDispatchToProps = { readEvents };
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
+  return {
+    readEvents: function() {
+      dispatch(readEvents());
+    }
+  };
+};
 
 export default connect(
   mapStateToProps,
