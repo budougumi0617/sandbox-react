@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
 import { readEvents } from '../actions';
@@ -42,11 +42,9 @@ class EventsIndex extends Component<Props> {
               <th>Body</th>
             </tr>
           </thead>
-           <tbody>
-            {this.renderEvents()}
-          </tbody>
+          <tbody>{this.renderEvents()}</tbody>
         </table>
-         <Link to="/events/new">New Event</Link>
+        <Link to="/events/new">New Event</Link>
       </React.Fragment>
     );
   }
