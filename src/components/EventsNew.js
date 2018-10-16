@@ -1,10 +1,18 @@
+// @flow
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { Link } from 'react-router-dom';
+import { Field, reduxForm, type FormProps } from 'redux-form';
+import { Link, type RouterHistory } from 'react-router-dom';
 import { postEvent } from '../actions';
 
-class EventsNew extends Component {
+// https://redux-form.com/7.4.2/docs/flow.md/
+type Props = {
+  postEvent: void => any,
+  history: RouterHistory
+} & FormProps;
+
+class EventsNew extends Component<Props> {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
@@ -52,6 +60,7 @@ const validate = values => {
   return errors;
 };
 
+// FIXME Need dispatch?
 const mapDispatchToProps = { postEvent };
 
 export default connect(
