@@ -15,7 +15,7 @@ type Props = {
 class EventsNew extends Component<Props> {
   constructor(props) {
     super(props);
-    this.onSubmit = this.onSubmit.bind(this);
+    (this: any).onSubmit = this.onSubmit.bind(this);
   }
   renderField(field) {
     const {
