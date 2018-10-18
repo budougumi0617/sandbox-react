@@ -4,9 +4,10 @@ import axios from 'axios';
 import _ from 'lodash';
 import { createAction } from 'redux-actions';
 
-import type { ReadEventsAction } from '../types/Action';
+import type { ReadEventsAction, PostEventAction } from '../types/Action';
 
 export const READ_EVENTS = 'READ_EVENTS';
+export const POST_EVENT = 'POST_EVENT';
 
 const ROOT_URL = 'https://udemy-utils.herokuapp.com/api/v1';
 const QUERYSTRING = '?token=token123';
@@ -19,8 +20,9 @@ export const readEvents: void => ReadEventsAction = createAction(READ_EVENTS, ()
     return _.mapKeys(response.data, 'id');
   })
 );
-// export const readEvents: void => ThunkAction = (): ThunkAction => async (dispatch: Dispatch) => {
-//   return await axios
-//     .get(`${ROOT_URL}/events${QUERYSTRING}`)
-//     .then(response => dispatch({ type: READ_EVENTS, response }));
-// };
+
+export const postEvent: void => PostEventAction = createAction(POST_EVENT, values =>
+  axios.post(`${ROOT_URL}/events${QUERYSTRING}`, values).then(response => {
+    return response;
+  })
+);
