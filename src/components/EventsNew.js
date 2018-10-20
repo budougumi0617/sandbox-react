@@ -36,7 +36,7 @@ class EventsNew extends Component<Props> {
     this.props.history.push('/');
   }
   render() {
-    const { handleSubmit, pristine, submitting } = this.props;
+    const { handleSubmit, pristine, submitting, invalid } = this.props
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         <div>
