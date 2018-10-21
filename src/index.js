@@ -15,9 +15,11 @@ import EventsNew from './components/EventsNew';
 import EventsShow from './components/EventsShow';
 import registerServiceWorker from './registerServiceWorker';
 
-const enhancer = process.env.NODE_ENV === 'development' ?
-  composeWithDevTools(applyMiddleware(promiseMiddleware)) : applyMiddleware(promiseMiddleware)
-const store = createStore(reducer, enhancer)
+const enhancer =
+  process.env.NODE_ENV === 'development'
+    ? composeWithDevTools(applyMiddleware(promiseMiddleware))
+    : applyMiddleware(promiseMiddleware);
+const store = createStore(reducer, enhancer);
 
 const root = document.getElementById('root');
 if (root == null) {

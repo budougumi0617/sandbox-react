@@ -26,9 +26,7 @@ class EventsIndex extends Component<Props> {
       <tr key={event.id}>
         <td>{event.id}</td>
         <td>
-          <Link to={`/events/${event.id}`}>
-            {event.title}
-          </Link>
+          <Link to={`/events/${event.id}`}> {event.title} </Link>
         </td>
         <td>{event.body}</td>
       </tr>
