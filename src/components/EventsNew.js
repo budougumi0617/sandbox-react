@@ -36,7 +36,9 @@ class EventsNew extends Component<Props> {
     this.props.history.push('/');
   }
   render() {
-    const { handleSubmit, pristine, submitting, invalid } = this.props
+    // pristineはフィールドに入力があるか
+    // submittingはsubmitボタンがクリックされたか（連打防止）
+    const { handleSubmit, pristine, submitting, invalid } = this.props;
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         <div>
@@ -46,7 +48,7 @@ class EventsNew extends Component<Props> {
           <Field label="Body" name="body" type="text" component={this.renderField} />
         </div>
         <div>
-          <input type="submit" value="Submit" disabled={pristine || submitting} />
+          <input type="submit" value="Submit" disabled={pristine || submitting || invalid} />
           <Link to="/">Cancel</Link>
         </div>
       </form>
