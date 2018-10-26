@@ -4,7 +4,13 @@ import axios from 'axios';
 import _ from 'lodash';
 import { createAction } from 'redux-actions';
 
-import type { ReadEventsAction, PostEventAction } from '../types/Action';
+import type {
+  ReadEventsAction,
+  ReadEventAction,
+  PostEventAction,
+  UpdateEventAction,
+  DeleteEventAction
+} from '../types/Action';
 
 export const READ_EVENTS = 'READ_EVENTS';
 export const READ_EVENT = 'READ_EVENT';
@@ -30,10 +36,11 @@ export const postEvent: void => PostEventAction = createAction(POST_EVENT, value
   })
 );
 
-export const _putEvent = values => async dispatch => {
-  const response = await axios.put(`${ROOT_URL}/events/${values.id}${QUERYSTRING}`, values)
-  dispatch({ type: UPDATE_EVENT, response })
-}
+export const _updateEvent: any => UpdateEventAction = createAction(UPDATE_EVENT, values =>
+  axios.put(`${ROOT_URL}/events/${values.id}${QUERYSTRING}`, values).then(response => {
+    return response;
+  })
+);
 
 export const putEvent = values => async dispatch => {
   const response = await axios.put(`${ROOT_URL}/events/${values.id}${QUERYSTRING}`, values)

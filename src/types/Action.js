@@ -46,7 +46,12 @@ export type DeleteEventAction = {
   error?: boolean
 };
 
-export type Action = ReadEventsAction | PostEventAction;
+export type Action =
+  | ReadEventsAction
+  | ReadEventAction
+  | PostEventAction
+  | UpdateEventAction
+  | DeleteEventAction;
 
 export type StandardAction<T, P> =
   | {|
