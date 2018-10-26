@@ -7,10 +7,10 @@ import { createAction } from 'redux-actions';
 import type { ReadEventsAction, PostEventAction } from '../types/Action';
 
 export const READ_EVENTS = 'READ_EVENTS';
-export const READ_EVENT = 'READ_EVENT'
+export const READ_EVENT = 'READ_EVENT';
 export const POST_EVENT = 'POST_EVENT';
-export const UPDATE_EVENT = 'UPDATE_EVENT'
-export const DELETE_EVENT = 'DELETE_EVENT'
+export const UPDATE_EVENT = 'UPDATE_EVENT';
+export const DELETE_EVENT = 'DELETE_EVENT';
 
 const ROOT_URL = 'https://udemy-utils.herokuapp.com/api/v1';
 const QUERYSTRING = '?token=token123';
@@ -29,6 +29,11 @@ export const postEvent: void => PostEventAction = createAction(POST_EVENT, value
     return response;
   })
 );
+
+export const _putEvent = values => async dispatch => {
+  const response = await axios.put(`${ROOT_URL}/events/${values.id}${QUERYSTRING}`, values)
+  dispatch({ type: UPDATE_EVENT, response })
+}
 
 export const putEvent = values => async dispatch => {
   const response = await axios.put(`${ROOT_URL}/events/${values.id}${QUERYSTRING}`, values)
