@@ -36,7 +36,7 @@ export const postEvent: void => PostEventAction = createAction(POST_EVENT, value
   })
 );
 
-export const _updateEvent: any => UpdateEventAction = createAction(UPDATE_EVENT, values =>
+export const _putEvent: any => UpdateEventAction = createAction(UPDATE_EVENT, values =>
   axios.put(`${ROOT_URL}/events/${values.id}${QUERYSTRING}`, values).then(response => {
     return response;
   })
@@ -47,10 +47,23 @@ export const putEvent = values => async dispatch => {
   dispatch({ type: UPDATE_EVENT, response })
 }
 
-export const getEvent = id => async dispatch => {
+// getEvent
+export const readEvent: any => ReadEventAction = createAction(READ_EVENT, values =>
+  axios.get(`${ROOT_URL}/events/${values.id}${QUERYSTRING}`, values).then(response => {
+    return response;
+  })
+);
+
+export const getEvent = (id: number) => async dispatch => {
   const response = await axios.get(`${ROOT_URL}/events/${id}${QUERYSTRING}`)
   dispatch({ type: READ_EVENT, response })
 }
+
+export const _deleteEvent: any => DeleteEventAction = createAction(DELETE_EVENT, values =>
+  axios.delete(`${ROOT_URL}/events/${values.id}${QUERYSTRING}`).then(response => {
+    return response.data;
+  })
+);
 
 export const deleteEvent = id => async dispatch => {
   await axios.delete(`${ROOT_URL}/events/${id}${QUERYSTRING}`)
