@@ -3,6 +3,7 @@
 import axios from 'axios';
 import _ from 'lodash';
 import { createAction } from 'redux-actions';
+import type { Dispatch } from 'redux';
 
 import type {
   ReadEventsAction,
@@ -43,9 +44,9 @@ export const _putEvent: any => UpdateEventAction = createAction(UPDATE_EVENT, va
 );
 
 export const putEvent = values => async dispatch => {
-  const response = await axios.put(`${ROOT_URL}/events/${values.id}${QUERYSTRING}`, values)
-  dispatch({ type: UPDATE_EVENT, response })
-}
+  const response = await axios.put(`${ROOT_URL}/events/${values.id}${QUERYSTRING}`, values);
+  dispatch({ type: UPDATE_EVENT, response });
+};
 
 // getEvent
 export const readEvent: any => ReadEventAction = createAction(READ_EVENT, values =>
@@ -55,9 +56,9 @@ export const readEvent: any => ReadEventAction = createAction(READ_EVENT, values
 );
 
 export const getEvent = (id: number) => async dispatch => {
-  const response = await axios.get(`${ROOT_URL}/events/${id}${QUERYSTRING}`)
-  dispatch({ type: READ_EVENT, response })
-}
+  const response = await axios.get(`${ROOT_URL}/events/${id}${QUERYSTRING}`);
+  dispatch({ type: READ_EVENT, response });
+};
 
 export const _deleteEvent: any => DeleteEventAction = createAction(DELETE_EVENT, values =>
   axios.delete(`${ROOT_URL}/events/${values.id}${QUERYSTRING}`).then(response => {
@@ -65,7 +66,7 @@ export const _deleteEvent: any => DeleteEventAction = createAction(DELETE_EVENT,
   })
 );
 
-export const deleteEvent = id => async dispatch => {
-  await axios.delete(`${ROOT_URL}/events/${id}${QUERYSTRING}`)
-  dispatch({ type: DELETE_EVENT, id })
-}
+export const deleteEvent = (id: number) => async (dispatch: Dispatch<DeleteEventAction>) => {
+  await axios.delete(`${ROOT_URL}/events/${id}${QUERYSTRING}`);
+  dispatch({ type: DELETE_EVENT, id });
+};
