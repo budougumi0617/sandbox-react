@@ -31,7 +31,7 @@ class EventsNew extends Component<Props> {
       </div>
     );
   }
-  async onSubmit(values) {
+  async onSubmit(values: { title: string, body: string }) {
     this.props.postEvent(values);
     this.props.history.push('/');
   }
@@ -55,7 +55,7 @@ class EventsNew extends Component<Props> {
     );
   }
 }
-const validate = values => {
+const validate = (values: { title: string, body: string }) => {
   const errors = {};
   if (!values.title) errors.title = 'Enter a title, please.';
   if (!values.body) errors.body = 'Enter a body, please.';

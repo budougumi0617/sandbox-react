@@ -41,11 +41,13 @@ class EventsShow extends Component<Props> {
       </div>
     );
   }
+
   async onDeleteClick() {
     const { id } = this.props.match.params;
     if (id) await this.props.deleteEvent(id);
     this.props.history.push('/');
   }
+
   async onSubmit(values) {
     await this.props.putEvent(values);
     this.props.history.push('/');
