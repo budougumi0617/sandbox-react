@@ -4,14 +4,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, type FormProps } from 'redux-form';
 import { Link, type ContextRouter } from 'react-router-dom';
-import { getEvent, deleteEvent, putEvent } from '../actions';
+import { readEvent, deleteEvent, updateEvent } from '../actions';
 
 type Props = {
   onSubmit: void => any,
   onDeleteClick: void => any,
   deleteEvent: string => any,
-  putEvent: string => any,
-  getEvent: string => any
+  updateEvent: string => any,
+  readEvent: string => any
 } & ContextRouter &
   FormProps;
 
@@ -24,7 +24,7 @@ class EventsShow extends Component<Props> {
 
   componentDidMount() {
     const { id } = this.props.match.params;
-    if (id) this.props.getEvent(id);
+    if (id) this.props.readEvent(id);
   }
 
   renderField(field) {
@@ -49,14 +49,13 @@ class EventsShow extends Component<Props> {
   }
 
   async onSubmit(values) {
-    await this.props.putEvent(values);
+    this.props.updateEvent(values);
     this.props.history.push('/');
   }
   render() {
     const { handleSubmit, pristine, submitting, invalid } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.onSubmit)}>
-        <div>
+      <form onSubmit={handleSubmit(this.onSubmit)}> <div>
           <Field label="Title" name="title" type="text" component={this.renderField} />
         </div>
         <div>
@@ -86,7 +85,7 @@ const mapStateToProps = (state, ownProps) => {
   return { initialValues: event, event };
 };
 
-const mapDispatchToProps = { deleteEvent, getEvent, putEvent };
+const mapDispatchToProps = { deleteEvent, readEvent, updateEvent };
 
 export default connect(
   mapStateToProps,

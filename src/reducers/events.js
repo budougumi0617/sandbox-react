@@ -1,7 +1,18 @@
 // @flow
 
 import { handleActions, type ActionType } from 'redux-actions';
-import { readEvents, READ_EVENTS } from '../actions';
+import {
+  POST_EVENT,
+  postEvent,
+  READ_EVENT,
+  readEvent,
+  UPDATE_EVENT,
+  updateEvent,
+  READ_EVENTS,
+  readEvents,
+  DELETE_EVENT,
+  deleteEvent
+} from '../actions';
 
 import type { EventMap } from '../types/Action';
 
@@ -11,15 +22,35 @@ const initialState: {
 
 export default handleActions(
   {
+    [POST_EVENT]: {
+      next(state: { events: EventMap | {} }, action: ActionType<typeof postEvent>) {
+        console.log(action.payload);
+        return { ...state, [action.payload.id]: action.payload };
+      }
+    },
+    [UPDATE_EVENT]: {
+      next(state: { events: EventMap | {} }, action: ActionType<typeof updateEvent>) {
+        console.log(action.payload);
+        return { ...state, [action.payload.id]: action.payload };
+      }
+    },
+    [READ_EVENT]: {
+      next(state: { events: EventMap | {} }, action: ActionType<typeof readEvent>) {
+        console.log(action.payload);
+        return { ...state, [action.payload.id]: action.payload };
+      }
+    },
     [READ_EVENTS]: {
       next(state: { events: EventMap | {} }, action: ActionType<typeof readEvents>) {
-        console.log(action);
         return { ...state, events: action.payload };
       },
       throw(state: { events: EventMap | {} }, action: ActionType<typeof readEvents>) {
-        console.log('In throw');
-        console.log(action);
         return { ...state, events: {} };
+      }
+    },
+    [DELETE_EVENT]: {
+      next(state: { events: EventMap | {} }, action: ActionType<typeof deleteEvent>) {
+        return { events: action.payload };
       }
     }
   },

@@ -24,25 +24,25 @@ export type ReadEventsAction = {
 
 export type ReadEventAction = {
   type: typeof ReadEvent,
-  payload?: any,
+  payload?: Event,
   error?: boolean
 };
 
 export type PostEventAction = {
   type: typeof PostEvent,
-  payload?: any,
+  payload?: Event,
   error?: boolean
 };
 
 export type UpdateEventAction = {
   type: typeof UpdateEvent,
-  payload?: any,
+  payload?: Event,
   error?: boolean
 };
 
 export type DeleteEventAction = {
   type: typeof DeleteEvent,
-  payload?: any,
+  payload?: Event,
   error?: boolean
 };
 
