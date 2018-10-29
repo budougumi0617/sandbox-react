@@ -36,8 +36,14 @@ export default handleActions(
     },
     [READ_EVENT]: {
       next(state: { events: EventMap | {} }, action: ActionType<typeof readEvent>) {
-        console.log(action.payload);
+        console.log('in READ_EVENT handleActions');
+        console.log(state);
+        console.log(action);
         return { ...state, [action.payload.id]: action.payload };
+      },
+      throw(state: { events: EventMap | {} }, action: ActionType<typeof readEvents>) {
+        console.log(`throwed...`);
+        return { ...state, events: {} };
       }
     },
     [READ_EVENTS]: {

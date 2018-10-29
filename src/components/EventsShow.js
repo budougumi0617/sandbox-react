@@ -6,6 +6,9 @@ import { Field, reduxForm, type FormProps } from 'redux-form';
 import { Link, type ContextRouter } from 'react-router-dom';
 import { readEvent, deleteEvent, updateEvent } from '../actions';
 
+import type { Dispatch } from 'redux';
+import type { Action } from '../types/Action';
+
 type Props = {
   onSubmit: void => any,
   onDeleteClick: void => any,
@@ -23,7 +26,8 @@ class EventsShow extends Component<Props> {
   }
 
   componentDidMount() {
-    const { id } = this.props.match.params;
+    const id = this.props.match.params.id;
+    console.log(`id = ${id}`);
     if (id) this.props.readEvent(id);
   }
 
@@ -43,8 +47,8 @@ class EventsShow extends Component<Props> {
   }
 
   async onDeleteClick() {
-    const { id } = this.props.match.params;
-    if (id) await this.props.deleteEvent(id);
+    const id = this.props.match.params.id;
+    if (id) this.props.deleteEvent(id);
     this.props.history.push('/');
   }
 
@@ -55,7 +59,9 @@ class EventsShow extends Component<Props> {
   render() {
     const { handleSubmit, pristine, submitting, invalid } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.onSubmit)}> <div>
+      <form onSubmit={handleSubmit(this.onSubmit)}>
+        {' '}
+        <div>
           <Field label="Title" name="title" type="text" component={this.renderField} />
         </div>
         <div>
@@ -85,7 +91,13 @@ const mapStateToProps = (state, ownProps) => {
   return { initialValues: event, event };
 };
 
-const mapDispatchToProps = { deleteEvent, readEvent, updateEvent };
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
+  return {
+    deleteEvent: values => dispatch(deleteEvent(values)),
+    readEvent: values => dispatch(readEvent(values)),
+    updateEvent: values => dispatch(updateEvent(values))
+  };
+};
 
 export default connect(
   mapStateToProps,
