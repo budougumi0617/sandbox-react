@@ -50,14 +50,7 @@ export const readEvent: any => ReadEventAction = createAction(READ_EVENT, values
 );
 
 export const deleteEvent: any => DeleteEventAction = createAction(DELETE_EVENT, values => {
-  console.debug('in deleteEvent');
-  console.debug(values);
-  axios
-    .delete(`${ROOT_URL}/events/${values}${QUERYSTRING}`)
-    .then(response => {
-      console.debug('in deleteEvent axios');
-      console.debug(values);
-      return response.data;
-    })
-    .catch(e => console.log(values));
+  return axios.delete(`${ROOT_URL}/events/${values}${QUERYSTRING}`).then(response => {
+    return response.data;
+  });
 });

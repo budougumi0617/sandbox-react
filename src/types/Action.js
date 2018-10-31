@@ -18,31 +18,31 @@ export type EventMap = {|
 
 export type ReadEventsAction = {
   type: typeof ReadEvents,
-  payload?: EventMap | Error,
+  payload: EventMap | Error,
   error?: boolean
 };
 
 export type ReadEventAction = {
   type: typeof ReadEvent,
-  payload?: Event,
+  payload: Event,
   error?: boolean
 };
 
 export type PostEventAction = {
   type: typeof PostEvent,
-  payload?: Event,
+  payload: Event,
   error?: boolean
 };
 
 export type UpdateEventAction = {
   type: typeof UpdateEvent,
-  payload?: Event,
+  payload: Event,
   error?: boolean
 };
 
 export type DeleteEventAction = {
   type: typeof DeleteEvent,
-  payload?: Event,
+  payload: Event,
   error?: boolean
 };
 
