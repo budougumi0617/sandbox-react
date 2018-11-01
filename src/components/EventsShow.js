@@ -27,7 +27,7 @@ class EventsShow extends Component<Props> {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    console.log(`id = ${id}`);
+    if (id) console.log(`id = ${id}`);
     if (id) this.props.readEvent(id);
   }
 
