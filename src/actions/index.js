@@ -49,6 +49,7 @@ export const readEvent: any => ReadEventAction = createAction(READ_EVENT, (id: s
 );
 
 export const deleteEvent: any => DeleteEventAction = createAction(DELETE_EVENT, (id: string) => {
+  // FIXME DELETEのときだけreturnしないとpayloadが入らない。
   return axios.delete(`${ROOT_URL}/events/${id}${QUERYSTRING}`).then(response => {
     return response.data;
   });

@@ -25,7 +25,9 @@ export default handleActions(
     [POST_EVENT]: {
       next(state: { events: EventMap | {} }, action: ActionType<typeof postEvent>) {
         console.log(action.payload);
-        return { ...state, [action.payload.id]: action.payload };
+        const events = state.events;
+        const result = { ...events, [action.payload.id]: action.payload };
+        return { ...state, events: result };
       }
     },
     [UPDATE_EVENT]: {
