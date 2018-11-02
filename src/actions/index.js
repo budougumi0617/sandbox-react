@@ -3,7 +3,6 @@
 import axios from 'axios';
 import _ from 'lodash';
 import { createAction } from 'redux-actions';
-import type { Dispatch } from 'redux';
 
 import type {
   ReadEventsAction,
@@ -43,14 +42,14 @@ export const updateEvent: any => UpdateEventAction = createAction(UPDATE_EVENT, 
   })
 );
 
-export const readEvent: any => ReadEventAction = createAction(READ_EVENT, values =>
-  axios.get(`${ROOT_URL}/events/${values}${QUERYSTRING}`).then(response => {
+export const readEvent: any => ReadEventAction = createAction(READ_EVENT, (id: string) =>
+  axios.get(`${ROOT_URL}/events/${id}${QUERYSTRING}`).then(response => {
     return response.data;
   })
 );
 
-export const deleteEvent: any => DeleteEventAction = createAction(DELETE_EVENT, values => {
-  return axios.delete(`${ROOT_URL}/events/${values}${QUERYSTRING}`).then(response => {
+export const deleteEvent: any => DeleteEventAction = createAction(DELETE_EVENT, (id: string) => {
+  return axios.delete(`${ROOT_URL}/events/${id}${QUERYSTRING}`).then(response => {
     return response.data;
   });
 });
