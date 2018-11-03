@@ -62,9 +62,14 @@ export default handleActions(
       next(state: { events: EventMap | {} }, action: ActionType<typeof deleteEvent>) {
         console.log('in DELETE_EVENT handleActions');
         console.log(action);
-        delete state.events[action.payload.id];
         console.log({ ...state });
-        return { ...state };
+        const result = Object.keys(state.events)
+          .filter(k => state.events[Number(k)].id !== action.payload.id)
+          .reduce((r, c) => {
+            r[Number(c)] = state.events[Number(c)];
+            return r;
+          }, {});
+        return { ...state, events: result };
       }
     }
   },
