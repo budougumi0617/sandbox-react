@@ -34,7 +34,9 @@ export default handleActions(
       next(state: { events: EventMap | {} }, action: ActionType<typeof updateEvent>) {
         console.log('in UPDATE_EVENT handleActions');
         console.log(action.payload);
-        return { ...state, [action.payload.id]: action.payload };
+        const events = state.events;
+        const result = { ...events, [action.payload.id]: action.payload };
+        return { ...state, events: result };
       }
     },
     [READ_EVENT]: {
@@ -45,7 +47,7 @@ export default handleActions(
         const events = state.events;
         const result = { ...events, [action.payload.id]: action.payload };
         console.log(result);
-        return { ...state, [action.payload.id]: action.payload };
+        return { ...state, events: result };
       }
     },
     [READ_EVENTS]: {
@@ -54,9 +56,6 @@ export default handleActions(
         console.log(state.events);
         console.log(action);
         return { ...state, events: action.payload };
-      },
-      throw(state: { events: EventMap | {} }, action: ActionType<typeof readEvents>) {
-        return { ...state, events: {} };
       }
     },
     [DELETE_EVENT]: {
