@@ -1,7 +1,10 @@
 // @flow
 
 const ReadEvents: 'READ_EVENTS' = 'READ_EVENTS';
+const ReadEvent: 'READ_EVENT' = 'READ_EVENT';
 const PostEvent: 'POST_EVENT' = 'POST_EVENT';
+const UpdateEvent: 'UPDATE_EVENT' = 'UPDATE_EVENT';
+const DeleteEvent: 'DELETE_EVENT' = 'DELETE_EVENT';
 
 export type Event = {
   id: number,
@@ -15,21 +18,51 @@ export type EventMap = {|
 
 export type ReadEventsAction = {
   type: typeof ReadEvents,
-  payload?: EventMap | Error,
+  payload: EventMap | Error,
+  error?: boolean
+};
+
+export type ReadEventAction = {
+  type: typeof ReadEvent,
+  payload: Event,
   error?: boolean
 };
 
 export type PostEventAction = {
   type: typeof PostEvent,
-  payload?: any,
+  payload: Event,
   error?: boolean
 };
 
-export type Action = ReadEventsAction | PostEventAction;
+export type UpdateEventAction = {
+  type: typeof UpdateEvent,
+  payload: Event,
+  error?: boolean
+};
 
-export type ActionT<A: Action, P> = {|
-  type: A,
-  payload?: P | Error,
-  error?: boolean,
-  meta?: mixed
-|};
+export type DeleteEventAction = {
+  type: typeof DeleteEvent,
+  payload: Event,
+  error?: boolean
+};
+
+export type Action =
+  | ReadEventsAction
+  | ReadEventAction
+  | PostEventAction
+  | UpdateEventAction
+  | DeleteEventAction;
+
+export type StandardAction<T, P> =
+  | {|
+      type: T,
+      payload: P,
+      error?: false,
+      meta?: mixed
+    |}
+  | {|
+      type: T,
+      payload: Error,
+      error: true,
+      meta?: mixed
+    |};

@@ -31,12 +31,14 @@ class EventsNew extends Component<Props> {
       </div>
     );
   }
-  async onSubmit(values) {
+  async onSubmit(values: { title: string, body: string }) {
     this.props.postEvent(values);
     this.props.history.push('/');
   }
   render() {
-    const { handleSubmit, pristine, submitting } = this.props;
+    // pristineはフィールドに入力があるか
+    // submittingはsubmitボタンがクリックされたか（連打防止）
+    const { handleSubmit, pristine, submitting, invalid } = this.props;
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         <div>
@@ -46,14 +48,14 @@ class EventsNew extends Component<Props> {
           <Field label="Body" name="body" type="text" component={this.renderField} />
         </div>
         <div>
-          <input type="submit" value="Submit" disabled={pristine || submitting} />
+          <input type="submit" value="Submit" disabled={pristine || submitting || invalid} />
           <Link to="/">Cancel</Link>
         </div>
       </form>
     );
   }
 }
-const validate = values => {
+const validate = (values: { title: string, body: string }) => {
   const errors = {};
   if (!values.title) errors.title = 'Enter a title, please.';
   if (!values.body) errors.body = 'Enter a body, please.';
