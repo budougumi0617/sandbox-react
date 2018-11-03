@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import _ from 'lodash';
 
 import { readEvents } from '../actions';
 
@@ -21,16 +20,20 @@ class EventsIndex extends Component<Props> {
   }
 
   renderEvents() {
-    // return this.props.events.map(event => (
-    return _.map(this.props.events, event => (
-      <tr key={event.id}>
-        <td>{event.id}</td>
-        <td>
-          <Link to={`/events/${event.id}`}> {event.title} </Link>
-        </td>
-        <td>{event.body}</td>
-      </tr>
-    ));
+    const keys = Object.keys(this.props.events);
+    if (keys.length !== 0) {
+      return keys.map(id => (
+        <tr key={this.props.events[id].id}>
+          <td>{this.props.events[id].id}</td>
+          <td>
+            <Link to={`/events/${id}`}> {this.props.events[id].title} </Link>
+          </td>
+          <td>{this.props.events[id].body}</td>
+        </tr>
+      ));
+    } else {
+      return;
+    }
   }
 
   render() {

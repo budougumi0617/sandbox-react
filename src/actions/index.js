@@ -1,7 +1,6 @@
 // @flow
 
 import axios from 'axios';
-import _ from 'lodash';
 import { createAction } from 'redux-actions';
 
 import type {
@@ -25,8 +24,10 @@ export const readEvents: void => ReadEventsAction = createAction(READ_EVENTS, ()
   // TODO ソースコード見れば良かった。
   // https://github.com/redux-utilities/redux-actions/blob/51de3891278dc03713d917d636f1508c0c80d44f/src/createAction.js#L29-L31
   axios.get(`${ROOT_URL}/events${QUERYSTRING}`).then(response => {
-    // throw new Error('test');
-    return _.mapKeys(response.data, 'id');
+    return response.data.reduce((r, c) => {
+      r[c.id] = c;
+      return r;
+    }, {});
   })
 );
 
