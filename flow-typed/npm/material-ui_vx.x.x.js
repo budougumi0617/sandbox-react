@@ -214,6 +214,10 @@ declare module 'material-ui/FlatButton/index' {
   declare module.exports: any;
 }
 
+declare module 'material-ui/FloatingActionButton' {
+  declare module.exports: any;
+}
+
 declare module 'material-ui/FloatingActionButton/FloatingActionButton' {
   declare module.exports: any;
 }
@@ -4406,6 +4410,10 @@ declare module 'material-ui/SvgIcon/SvgIcon' {
   declare module.exports: any;
 }
 
+declare module 'material-ui/Table' {
+  declare module.exports: any;
+}
+
 declare module 'material-ui/Table/index' {
   declare module.exports: any;
 }
@@ -6342,19 +6350,29 @@ declare module 'material-ui/svg-icons/device/signal-cellular-4-bar.js' {
   declare module.exports: $Exports<'material-ui/svg-icons/device/signal-cellular-4-bar'>;
 }
 declare module 'material-ui/svg-icons/device/signal-cellular-connected-no-internet-0-bar.js' {
-  declare module.exports: $Exports<'material-ui/svg-icons/device/signal-cellular-connected-no-internet-0-bar'>;
+  declare module.exports: $Exports<
+    'material-ui/svg-icons/device/signal-cellular-connected-no-internet-0-bar'
+  >;
 }
 declare module 'material-ui/svg-icons/device/signal-cellular-connected-no-internet-1-bar.js' {
-  declare module.exports: $Exports<'material-ui/svg-icons/device/signal-cellular-connected-no-internet-1-bar'>;
+  declare module.exports: $Exports<
+    'material-ui/svg-icons/device/signal-cellular-connected-no-internet-1-bar'
+  >;
 }
 declare module 'material-ui/svg-icons/device/signal-cellular-connected-no-internet-2-bar.js' {
-  declare module.exports: $Exports<'material-ui/svg-icons/device/signal-cellular-connected-no-internet-2-bar'>;
+  declare module.exports: $Exports<
+    'material-ui/svg-icons/device/signal-cellular-connected-no-internet-2-bar'
+  >;
 }
 declare module 'material-ui/svg-icons/device/signal-cellular-connected-no-internet-3-bar.js' {
-  declare module.exports: $Exports<'material-ui/svg-icons/device/signal-cellular-connected-no-internet-3-bar'>;
+  declare module.exports: $Exports<
+    'material-ui/svg-icons/device/signal-cellular-connected-no-internet-3-bar'
+  >;
 }
 declare module 'material-ui/svg-icons/device/signal-cellular-connected-no-internet-4-bar.js' {
-  declare module.exports: $Exports<'material-ui/svg-icons/device/signal-cellular-connected-no-internet-4-bar'>;
+  declare module.exports: $Exports<
+    'material-ui/svg-icons/device/signal-cellular-connected-no-internet-4-bar'
+  >;
 }
 declare module 'material-ui/svg-icons/device/signal-cellular-no-sim.js' {
   declare module.exports: $Exports<'material-ui/svg-icons/device/signal-cellular-no-sim'>;
@@ -7572,22 +7590,30 @@ declare module 'material-ui/svg-icons/notification/airline-seat-flat.js' {
   declare module.exports: $Exports<'material-ui/svg-icons/notification/airline-seat-flat'>;
 }
 declare module 'material-ui/svg-icons/notification/airline-seat-individual-suite.js' {
-  declare module.exports: $Exports<'material-ui/svg-icons/notification/airline-seat-individual-suite'>;
+  declare module.exports: $Exports<
+    'material-ui/svg-icons/notification/airline-seat-individual-suite'
+  >;
 }
 declare module 'material-ui/svg-icons/notification/airline-seat-legroom-extra.js' {
   declare module.exports: $Exports<'material-ui/svg-icons/notification/airline-seat-legroom-extra'>;
 }
 declare module 'material-ui/svg-icons/notification/airline-seat-legroom-normal.js' {
-  declare module.exports: $Exports<'material-ui/svg-icons/notification/airline-seat-legroom-normal'>;
+  declare module.exports: $Exports<
+    'material-ui/svg-icons/notification/airline-seat-legroom-normal'
+  >;
 }
 declare module 'material-ui/svg-icons/notification/airline-seat-legroom-reduced.js' {
-  declare module.exports: $Exports<'material-ui/svg-icons/notification/airline-seat-legroom-reduced'>;
+  declare module.exports: $Exports<
+    'material-ui/svg-icons/notification/airline-seat-legroom-reduced'
+  >;
 }
 declare module 'material-ui/svg-icons/notification/airline-seat-recline-extra.js' {
   declare module.exports: $Exports<'material-ui/svg-icons/notification/airline-seat-recline-extra'>;
 }
 declare module 'material-ui/svg-icons/notification/airline-seat-recline-normal.js' {
-  declare module.exports: $Exports<'material-ui/svg-icons/notification/airline-seat-recline-normal'>;
+  declare module.exports: $Exports<
+    'material-ui/svg-icons/notification/airline-seat-recline-normal'
+  >;
 }
 declare module 'material-ui/svg-icons/notification/bluetooth-audio.js' {
   declare module.exports: $Exports<'material-ui/svg-icons/notification/bluetooth-audio'>;
