@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, type FormProps } from 'redux-form';
 import { Link, type ContextRouter } from 'react-router-dom';
 import { readEvent, deleteEvent, updateEvent } from '../actions';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 import type { Dispatch } from 'redux';
 import type { Action } from '../types/Action';
@@ -27,7 +29,6 @@ class EventsShow extends Component<Props> {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    if (id) console.log(`id = ${id}`);
     if (id) this.props.readEvent(id);
   }
 
@@ -39,10 +40,14 @@ class EventsShow extends Component<Props> {
       meta: { touched, error }
     } = field;
     return (
-      <div>
-        <input {...input} placeholder={label} type={type} />
-        {touched && error && <span>{error}</span>}
-      </div>
+      <TextField
+        hintText={label}
+        floatingLabelText={label}
+        type={type}
+        errorText={touched && error}
+        {...input}
+        fullWidth={true}
+      />
     );
   }
 
@@ -58,6 +63,7 @@ class EventsShow extends Component<Props> {
   }
   render() {
     const { handleSubmit, pristine, submitting, invalid } = this.props;
+    const style = { margin: 12 };
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         {' '}
@@ -68,11 +74,14 @@ class EventsShow extends Component<Props> {
           <Field label="Body" name="body" type="text" component={this.renderField} />
         </div>
         <div>
-          <input type="submit" value="Submit" disabled={pristine || submitting || invalid} />
-          <Link to="/">Cancel</Link>
-          <Link to="/" onClick={this.onDeleteClick}>
-            Delete
-          </Link>
+          <RaisedButton
+            label="Submit"
+            type="submit"
+            style={style}
+            disabled={pristine || submitting || invalid}
+          />
+          <RaisedButton label="Cancel" style={style} containerElement={<Link to="/" />} />
+          <RaisedButton label="Delete" style={style} onClick={this.onDeleteClick} />
         </div>
       </form>
     );

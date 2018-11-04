@@ -430,6 +430,10 @@ declare module 'material-ui/RaisedButton/index' {
   declare module.exports: any;
 }
 
+declare module 'material-ui/RaisedButton' {
+  declare module.exports: any;
+}
+
 declare module 'material-ui/RaisedButton/RaisedButton' {
   declare module.exports: any;
 }
@@ -4463,6 +4467,10 @@ declare module 'material-ui/Tabs/Tabs' {
 }
 
 declare module 'material-ui/Tabs/TabTemplate' {
+  declare module.exports: any;
+}
+
+declare module 'material-ui/TextField' {
   declare module.exports: any;
 }
 
