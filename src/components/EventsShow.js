@@ -96,7 +96,7 @@ const validate = values => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const event = state.events.events[ownProps.match.params.id];
+  const event = state.events[ownProps.match.params.id];
   return { initialValues: event, event };
 };
 

@@ -16,47 +16,39 @@ import {
 
 import type { EventMap } from '../types/Action';
 
-const initialState: {
-  events: EventMap | {}
-} = { events: {} };
+const initialState: EventMap | {} = {};
 
 export default handleActions(
   {
     [POST_EVENT]: {
-      next(state: { events: EventMap | {} }, action: ActionType<typeof postEvent>) {
-        const events = state.events;
-        const result = { ...events, [action.payload.id]: action.payload };
-        return { ...state, events: result };
+      next(events: EventMap | {}, action: ActionType<typeof postEvent>) {
+        return { ...events, [action.payload.id]: action.payload };
       }
     },
     [UPDATE_EVENT]: {
-      next(state: { events: EventMap | {} }, action: ActionType<typeof updateEvent>) {
-        const events = state.events;
-        const result = { ...events, [action.payload.id]: action.payload };
-        return { ...state, events: result };
+      next(events: EventMap | {}, action: ActionType<typeof updateEvent>) {
+        return { ...events, [action.payload.id]: action.payload };
       }
     },
     [READ_EVENT]: {
-      next(state: { events: EventMap | {} }, action: ActionType<typeof readEvent>) {
-        const events = state.events;
-        const result = { ...events, [action.payload.id]: action.payload };
-        return { ...state, events: result };
+      next(events: EventMap | {}, action: ActionType<typeof readEvent>) {
+        return { ...events, [action.payload.id]: action.payload };
       }
     },
     [READ_EVENTS]: {
-      next(state: { events: EventMap | {} }, action: ActionType<typeof readEvents>) {
-        return { ...state, events: action.payload };
+      next(events: EventMap | {}, action: ActionType<typeof readEvents>) {
+        return action.payload;
       }
     },
     [DELETE_EVENT]: {
-      next(state: { events: EventMap | {} }, action: ActionType<typeof deleteEvent>) {
-        const result = Object.keys(state.events)
-          .filter(k => state.events[Number(k)].id !== action.payload.id)
+      next(events: EventMap | {}, action: ActionType<typeof deleteEvent>) {
+        const results = Object.keys(events)
+          .filter(k => events[Number(k)].id !== action.payload.id)
           .reduce((r, c) => {
-            r[Number(c)] = state.events[Number(c)];
+            r[Number(c)] = events[Number(c)];
             return r;
           }, {});
-        return { ...state, events: result };
+        return { ...results };
       }
     }
   },
