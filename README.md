@@ -1,6 +1,7 @@
 # sandbox-react
 <!-- Markdown snippet -->
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/budougumi0617/udemy_react)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4dd379b67640bc0c9d19/maintainability)](https://codeclimate.com/github/budougumi0617/sandbox-react/maintainability)
 
 Study React and Redux by Udemy.
 
