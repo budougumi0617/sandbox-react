@@ -4,6 +4,7 @@ import axios from 'axios';
 import { createAction } from 'redux-actions';
 
 import type {
+  Event,
   ReadEventsAction,
   ReadEventAction,
   PostEventAction,
@@ -31,25 +32,25 @@ export const readEvents: void => ReadEventsAction = createAction(READ_EVENTS, ()
   })
 );
 
-export const postEvent: void => PostEventAction = createAction(POST_EVENT, values =>
-  axios.post(`${ROOT_URL}/events${QUERYSTRING}`, values).then(response => {
+export const postEvent: Event => PostEventAction = createAction(POST_EVENT, (event: Event) =>
+  axios.post(`${ROOT_URL}/events${QUERYSTRING}`, event).then(response => {
     return response.data;
   })
 );
 
-export const updateEvent: any => UpdateEventAction = createAction(UPDATE_EVENT, values =>
-  axios.put(`${ROOT_URL}/events/${values.id}${QUERYSTRING}`, values).then(response => {
+export const updateEvent: Event => UpdateEventAction = createAction(UPDATE_EVENT, (event: Event) =>
+  axios.put(`${ROOT_URL}/events/${event.id}${QUERYSTRING}`, event).then(response => {
     return response.data;
   })
 );
 
-export const readEvent: any => ReadEventAction = createAction(READ_EVENT, (id: string) =>
+export const readEvent: string => ReadEventAction = createAction(READ_EVENT, (id: string) =>
   axios.get(`${ROOT_URL}/events/${id}${QUERYSTRING}`).then(response => {
     return response.data;
   })
 );
 
-export const deleteEvent: any => DeleteEventAction = createAction(DELETE_EVENT, (id: string) =>
+export const deleteEvent: string => DeleteEventAction = createAction(DELETE_EVENT, (id: string) =>
   axios.delete(`${ROOT_URL}/events/${id}${QUERYSTRING}`).then(response => {
     return response.data;
   })

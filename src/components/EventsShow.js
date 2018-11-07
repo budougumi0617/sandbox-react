@@ -9,10 +9,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 import type { Dispatch } from 'redux';
-import type { Action } from '../types/Action';
+import type { Event, Action } from '../types/Action';
 
 type Props = {
-  onSubmit: void => any,
+  onSubmit: Event => any,
   onDeleteClick: void => any,
   deleteEvent: string => any,
   updateEvent: string => any,
@@ -28,7 +28,7 @@ class EventsShow extends Component<Props> {
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id;
+    const id: ?string = this.props.match.params.id;
     if (id) this.props.readEvent(id);
   }
 
@@ -52,13 +52,13 @@ class EventsShow extends Component<Props> {
   }
 
   async onDeleteClick() {
-    const id = this.props.match.params.id;
+    const id: ?string = this.props.match.params.id;
     if (id) this.props.deleteEvent(id);
     this.props.history.push('/');
   }
 
-  async onSubmit(values) {
-    this.props.updateEvent(values);
+  async onSubmit(event: Event) {
+    this.props.updateEvent(event);
     this.props.history.push('/');
   }
   render() {
@@ -102,9 +102,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
   return {
-    deleteEvent: values => dispatch(deleteEvent(values)),
-    readEvent: values => dispatch(readEvent(values)),
-    updateEvent: values => dispatch(updateEvent(values))
+    deleteEvent: (id: string) => dispatch(deleteEvent(id)),
+    readEvent: (id: string) => dispatch(readEvent(id)),
+    updateEvent: (event: Event) => dispatch(updateEvent(event))
   };
 };
 
